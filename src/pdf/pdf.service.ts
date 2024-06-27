@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreatePdfDto } from './pdf.dto';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
@@ -10,7 +10,10 @@ export class PdfService {
     ) { }
 
     async create(createPdfDto: CreatePdfDto): Promise<string> {
-        this.pdfQueue.add('')
-        return 'Hello World!';
+        Logger.log('Before queue', parseInt(process.env.REDIS_PORT))
+        const job = await this.pdfQueue.add('transcode', {
+            foo: 'bar'
+        })
+        return 'Printing will be done asynchronously';
     }
 }

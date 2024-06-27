@@ -14,6 +14,7 @@ import * as Joi from 'joi';
           .valid('development', 'production', 'test', 'provision')
           .default('development'),
         PORT: Joi.number().port().default(3000),
+        REDIS_PORT: Joi.number().port().default(6379),
       }),
       envFilePath: '.env',
       isGlobal: true,
