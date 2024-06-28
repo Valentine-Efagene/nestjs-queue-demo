@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { PdfController } from './pdf.controller';
 import { PdfService } from './pdf.service';
 import { BullModule } from '@nestjs/bull';
+import { PdfConsumer } from './pdf.consumer';
 
 @Module({
     imports: [
@@ -16,6 +17,6 @@ import { BullModule } from '@nestjs/bull';
         }),
     ],
     controllers: [PdfController],
-    providers: [PdfService],
+    providers: [PdfService, PdfConsumer],
 })
 export class PdfModule { }
